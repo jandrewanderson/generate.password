@@ -13,97 +13,109 @@ var lowercaseChars = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 var number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var specials = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "-", "=", "|", "\\", "}", "{", "]", "[", '"', "'", ":", ";", "/", "?", ".", ">", ",", "<", "`", "~"];
 
-
+var newArray = []
 
 // Provided by instructor
 // ask about Uppercase
-function askAboutUppercase(){
-  allowUppercase = confirm("Are upper case characters allowed?");
-  console.log(allowUppercase);
-}
+function setCharacters(){
 
-// ask about Lowercase
-function askAboutLowercase(){
-  allowLowercase = confirm("Are lower case characters allowed?");
-  console.log(allowLowercase);
-}
+  function askAboutUppercase(){
+    allowUppercase = confirm("Are upper case characters allowed?");
+    console.log(allowUppercase);
+    if (allowUppercase === true){
+      newArray.push (...uppercaseChars);
+      console.log(newArray);
+    }
+      
+  } 
 
-// ask about Number
-function askAboutNumbers(){
-  allowNumbers = confirm("Are numbers allowed?");
-  console.log(allowNumbers);
-}
-
-// ask about Specials
-function askAboutSpecials(){
-  allowSpecials = confirm("Are special characters allowed?");
-  console.log(allowSpecials);
-}
-// Repeat for other criteria; for the number of characters, use a prompt statement. Google it. NOTE: prompt statements think any value you provide is a string. You will need to convert it to a number.
-
-//this will make numberGiven whatever number is entered into the prompt.
-function askNumberOfCharacters(){
-  var numberGiven = prompt("How many characters are allowed?"); //allows user to input number of characters
-  if (numberGiven === null){ 
-    return; //this will break the loop if cancel button is pressed.
-  }else if ( numberGiven > 0 && numberGiven < 26) { //the number needs to be above 0
-    console.log(numberGiven); //just here to verify number
-    console.log(typeof numberGiven); //just here to verify data type
-    var numberGivenInt = parseInt(numberGiven); //this will pass the numberGiven from a string to a number.
-    console.log(typeof numberGivenInt); //just here to verify data type
-  }else {
-    askNumberofCharacters0to25()
+  // ask about Lowercase
+  function askAboutLowercase(){
+    allowLowercase = confirm("Are lower case characters allowed?");
+    console.log(allowLowercase);
+    if (allowLowercase === true){
+      newArray.push (...lowercaseChars);
+      console.log(newArray);
+    }
   }
+
+  // ask about Number
+  function askAboutNumbers(){
+    allowNumbers = confirm("Are numbers allowed?");
+    console.log(allowNumbers);
+    if (allowNumbers === true){
+      newArray.push (...number);
+      console.log(newArray);
+    }
+  }
+
+  // ask about Specials
+  function askAboutSpecials(){
+    allowSpecials = confirm("Are special characters allowed?");
+    console.log(allowSpecials);
+    if (allowSpecials === true){
+      newArray.push (...specials);
+      console.log(newArray);
+    }
+  }
+
+
+  //this will make numberGiven whatever number is entered into the prompt.
+  function askNumberOfCharacters(){
+    passwordCharacterCount = prompt("How many characters are allowed?"); //allows user to input number of characters
+    if (passwordCharacterCount === null){ 
+      return; //this will break the loop if cancel button is pressed.
+    }else if ( passwordCharacterCount > 7 && passwordCharacterCount < 129) { //the number needs to be between 8 and 128.
+      console.log(passwordCharacterCount); //just here to verify number
+      console.log(typeof passwordCharacterCount); //just here to verify data type
+      var passwordCharacterCountInt = parseInt(passwordCharacterCount); //this will pass the passwordCharacterCount from a string to a number.
+      console.log(typeof passwordCharacterCountInt); //just here to verify data type
+    }else {
+      askNumberofCharacters8to128()
+    }
+    passwordCharacterCount = passwordCharacterCount;
+  }
+
+  //this function will create a loop requiring the user to input a number between 8 and 128.
+  function askNumberofCharacters8to128(){
+    passwordCharacterCount = prompt("Please enter a number between 8 and 128 for the allowed charaters. Thank You!"); 
+    //allows user to input a different number of characters allowed between 8 and 128.
+    if (passwordCharacterCount === null){
+      return;
+    }else if ( passwordCharacterCount > 7 && passwordCharacterCount < 129) {
+      console.log(passwordCharacterCount); //just here to verify the number
+      var passwordCharacterCountInt = parseInt(passwordCharacterCount); //this will pass the passwordCharacterCount from a string to a number.
+      console.log(typeof passwordCharacterCountInt); //just here to verify data type
+    } else {
+      askNumberOfCharacters ();
+    }
+
+  }
+askAboutUppercase();
+askAboutLowercase();
+askAboutNumbers();
+askAboutSpecials();
+askNumberOfCharacters();
+
+}
+// Once all the criteria are determined, this function will generate the password.
+function securePassword(){
+  setCharacters();
+  password = "";
+
   
-}
-
-//this function will create a loop requiring the user to input a number above 0.
-function askNumberofCharacters0to25(){
-  var numberGiven = prompt("Please enter a number between 0 and 25 for the allowed charaters. Thank You!"); 
-  //allows user to input a different number of characters allowed above 0.
-  if (numberGiven === null){
-    return;
-  }else if ( numberGiven > 0 && numberGiven < 26) { //the number needs to be above 0
-    console.log(numberGiven); //just here to verify the number
-    var numberGivenInt = parseInt(numberGiven); //this will pass the numberGiven from a string to a number.
-    console.log(typeof numberGivenInt); //just here to verify data type
-  } else {
-    askNumberOfCharacters ();
+  for (let i = 0; i < passwordCharacterCount; i++) {
+    var randomSelector = Math.floor(Math.random()* (newArray.length-1))
+    password += newArray[randomSelector];
   }
-
+  return password;
 }
 
-// Once all the criteria are determined, this function will generate the password. You can create other functions also if you need them.
-function generatePassword(){
-  var finalResult = ""
-
-  // HINT: Remember that a for-loop can iterate from a starting number to a ending number, such as the number of characters in a password.
-
-  //****************************************************figure out this for loop
-  // for (let i=0; len = uppercaseChars; i++){
-  //   var uppercaseRandom = i + "";   
-  // }
-
-  // HINT: You may want to look into merging arrays together
-
-
-  return finalResult;
-}
 
 // Write password to the #password input
 function writePassword() {
 
-  // ask the questions first
-  askAboutUppercase();
-  askAboutLowercase();
-  askAboutNumbers();
-  askAboutSpecials();
-  askNumberOfCharacters();
-
-
-
-
-  var password = generatePassword();
+  var password = securePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }

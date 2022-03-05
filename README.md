@@ -4,7 +4,7 @@
 
 ## Objectives
 
-The purpose of this assignment was to create a page that will showcase my future work in web deveolopment. The page was intended to fit on all screen sizes as well as having links to different sections of the page as well as to outside sources. I currently have links to some of my favorite social media, gaming, and streaming services. These will serve as placeholders for the future web pages that I will post here.
+The purpose of this assignment was to create a program in javascript that will generate a random password from a character list determined by the user. The length of the password will also be determined by the user. This project was intended to teach the different uses of functions in javascript, how they can interact with arrays, and implement them into a code that will accomplish a specific task. A few of the variables and basic functions were provided by the instructor.
 
 ## Screenshot of Final Page
 

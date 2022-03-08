@@ -103,11 +103,16 @@ function securePassword(){
   setCharacters();
   password = "";
 
-  
+  // create a password character for however many characters are allowed in the password
   for (let i = 0; i < passwordCharacterCount; i++) {
+    // get a random number which will point to an item in our allowed characters array
+    // then get the letter corresponding to that random index value
     var randomSelector = Math.floor(Math.random()* (newArray.length-1))
+
+    // add that letter to the password
     password += newArray[randomSelector];
   }
+  
   return password;
 }
 

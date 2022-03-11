@@ -1,7 +1,5 @@
 # generate.password
 
-# advanced-css-portfolio
-
 ## Objectives
 
 The purpose of this assignment was to create a program in javascript that will generate a random password from a character list determined by the user. The length of the password will also be determined by the user. This project was intended to teach the different uses of functions in javascript, how they can interact with arrays, and implement them into a code that will accomplish a specific task. A few of the variables and basic functions were provided by the instructor.
